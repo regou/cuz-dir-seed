@@ -4,7 +4,7 @@ body {
 }
 swicher,.switchWrap{position: relative;}
 swicher{display: inline-block;min-width: 150px;min-height: 50px;}
-.switch {
+swicher .switch {
     position: absolute;
     /*top: 50%;*/
     /*left: 50%;*/
@@ -21,7 +21,7 @@ swicher{display: inline-block;min-width: 150px;min-height: 50px;}
     -webkit-border-radius: 25px;
     border-radius: 25px;
 }
-.switch span {
+swicher .switch span {
     position: absolute;
     width: 20px;
     height: 4px;
@@ -41,7 +41,7 @@ swicher{display: inline-block;min-width: 150px;min-height: 50px;}
     -ms-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
-.switch span:after {
+swicher .switch span:after {
     content: "";
     display: block;
     position: absolute;
@@ -55,10 +55,10 @@ swicher{display: inline-block;min-width: 150px;min-height: 50px;}
     -ms-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
-input[type=radio] {
+swicher input[type=radio] {
     display: none;
 }
-.switch label {
+swicher .switch label {
     cursor: pointer;
     color: rgba(0,0,0,0.2);
     width: 60px;
@@ -69,31 +69,31 @@ input[type=radio] {
     -ms-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
-label[for^="yes"] {
+swicher label[for^="yes"] {
     position: absolute;
     left: 0px;
     height: 20px;
 }
-label[for^="no"] {
+swicher label[for^="no"] {
     position: absolute;
     right: 0px;
 }
-.no .switch {
+swicher .no .switch {
     background: #eb4f37;
 }
-.no .switch span {
+swicher .no .switch span {
     background: #fff;
     margin-left: -8px;
 }
-.no .switch span:after {
+swicher .no .switch span:after {
     background: #fff;
     height: 20px;
     margin-top: -8px;
     margin-left: 8px;
 }
-.yes .switch label[for^="yes"] {
+swicher .yes .switch label[for^="yes"] {
     color: #fff;
 }
-.no .switch label[for^="no"] {
+swicher .no .switch label[for^="no"] {
     color: #fff;
 }
