@@ -16,6 +16,12 @@
 
     2.5秒后第二个$scope.yes=1;
 
+    <ul data-ng-repeat="sw in list">
+        <li><swicher yesval="{{sw[0]}}" noval="{{sw[1]}}" yes="sw[2]"></swicher></li>
+    </ul>
+
+    List :{{list | json}}
+
 
     <script>
         var app=angular.module("app",[]);
@@ -62,6 +68,10 @@
             $timeout(function(){
                 $scope.num2=1;
             },2500);
+
+            $scope.list=[["yes","no",1],["是","否",0],["yep","Nana",0]];
+
+
         })
 
     </script>
