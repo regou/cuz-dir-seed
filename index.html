@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="libs/angular.min.js"></script>
+    <link rel="stylesheet" href="main.css"/>
+</head>
+<body data-ng-controller="ppp">
+
+    <swicher yesval="On" noval="Off" yes="num1"></swicher>
+
+
+
+    <swicher yesval="开" noval="关" yes="num2"></swicher>
+
+    2.5秒后第二个$scope.yes=1;
+
+
+    <script>
+        var app=angular.module("app",[]);
+        app.directive("swicher",function(){
+            return {
+                scope: {
+                    yesval: '@',//Up to Dowm
+                    noval: '@',
+                    yes: '='//Two way binding
+                },
+                restrict: 'E',
+                template:
+                        '<div class="switchWrap" ng-class="wrapClassName" >' +
+                                '<input type="radio" name="rdo" id="yes{{rd}}" ng-model="yes" ng-value="1" />' +
+                                '<input type="radio" name="rdo" id="no{{rd}}" ng-model="yes" ng-value="0" />' +
+                                '<div class="switch">' +
+                                '<label for="yes{{rd}}">{{yesval || "Yes"}}</label>' +
+                                '<label for="no{{rd}}">{{noval||"No"}}</label>' +
+                                '<span></span>' +
+                                '</div>' +
+                                '</div>',
+                link: function (scope, element, attrs,controller) {
+
+
+                    scope.$watch("yes",function(newValue, oldValue){
+                        if(newValue==1){
+                            scope.wrapClassName="yes";
+                        }else{
+                            scope.wrapClassName="no";
+                        }
+
+//                        element.attr("is-yes",newValue);
+                    });
+
+
+                    scope.rd=Math.random();
+                }
+            };
+        });
+
+        app.controller("ppp",function($scope,$timeout){
+            $scope.num1=1;
+            $scope.num2=0;
+            $timeout(function(){
+                $scope.num2=1;
+            },2500);
+        })
+
+    </script>
+</body>
+</html>
