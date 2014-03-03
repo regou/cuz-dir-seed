@@ -49,13 +49,20 @@
 
 
                     scope.$watch("yes",function(newValue, oldValue){
+                        var positive=null;
                         if(newValue==1){
                             scope.wrapClassName="yes";
-                            attrs.$set("positive",true);
+                            positive=true;
                         }else{
                             scope.wrapClassName="no";
-                            attrs.$set("positive",false);
-                        }
+                            positive=false;
+                        };
+
+                        //属性设定
+                        attrs.$set("positive",positive);
+
+                        //事件触发
+                        element.triggerHandler("change");
 
 //                        element.attr("is-yes",newValue);
                     });
