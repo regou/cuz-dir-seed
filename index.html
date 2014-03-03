@@ -16,8 +16,10 @@
 
     2.5秒后第二个$scope.yes=1;
 
-    <ul data-ng-repeat="sw in list">
-        <li><swicher yesval="{{sw[0]}}" noval="{{sw[1]}}" yes="sw[2]"></swicher></li>
+    <ul>
+        <li data-ng-repeat="sw in list">
+            <swicher yesval="{{sw[0]}}" noval="{{sw[1]}}" yes="sw[2]"></swicher>
+        </li>
     </ul>
 
     List :{{list | json}}
@@ -49,8 +51,10 @@
                     scope.$watch("yes",function(newValue, oldValue){
                         if(newValue==1){
                             scope.wrapClassName="yes";
+                            attrs.$set("positive",true);
                         }else{
                             scope.wrapClassName="no";
+                            attrs.$set("positive",false);
                         }
 
 //                        element.attr("is-yes",newValue);
