@@ -1,0 +1,8 @@
+<div class="btn-group">
+    <button ng-click="switchTo(bt.value,$index,conf)"
+            ng-repeat="bt in conf track by $index" type="button"
+            ng-class="{'true':'active', 'false':''}[bt.active]"
+            class="bg-btn btn-default">
+        {{bt.text}}
+    </button>
+</div>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html ng-app="bt">
+<head>
+    <meta charset="utf-8"/>
+    <title>radio-button-group</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <style>
+        radio-button-group{display: inline-block;}
+    .bg-btn {
+        display: inline-block;
+        margin: 0;
+        font-weight: normal;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        border-radius: 4px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .bg-btn:focus,
+    .bg-btn:active:focus,
+    .bg-btn.active:focus {
+        outline: thin dotted;
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+    }
+    .bg-btn:hover,
+    .bg-btn:focus {
+        color: #333333;
+        text-decoration: none;
+    }
+    .bg-btn:active,
+    .bg-btn.active {
+        outline: 0;
+        background-image: none;
+        -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    }
+    .bg-btn.disabled,
+    .bg-btn[disabled],
+    fieldset[disabled] .bg-btn {
+        cursor: not-allowed;
+        pointer-events: none;
+        opacity: 0.65;
+        filter: alpha(opacity=65);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .btn-default {
+        color: #000;
+        background-color: #FBFBFB;
+        border-color: #AAAAAA;
+    }
+
+
+    .btn-default:hover,
+    .btn-default:focus,
+    .btn-default:active,
+    .open > .dropdown-toggle.btn-default {
+        color: #333333;
+        background-color: #e6e6e6;
+        border-color: #adadad;
+    }
+    .btn-default:active,
+    .btn-default.active,
+    .open > .dropdown-toggle.btn-default {
+        background-image: none;
+    }
+    .btn-default.active{
+        color: #FFFFFF;
+        background-color: #5C9D2A;
+        border-color: #69A52B;
+        cursor: default;
+    }
+
+
+    .btn-default.disabled,
+    .btn-default[disabled],
+    fieldset[disabled] .btn-default,
+    .btn-default.disabled:hover,
+    .btn-default[disabled]:hover,
+    fieldset[disabled] .btn-default:hover,
+    .btn-default.disabled:focus,
+    .btn-default[disabled]:focus,
+    fieldset[disabled] .btn-default:focus,
+    .btn-default.disabled:active,
+    .btn-default[disabled]:active,
+    fieldset[disabled] .btn-default:active,
+    .btn-default.disabled.active,
+    .btn-default[disabled].active,
+    fieldset[disabled] .btn-default.active {
+        background-color: #ffffff;
+        border-color: #cccccc;
+    }
+
+    .btn-group,
+    .btn-group-vertical {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .btn-group > .bg-btn,
+    .btn-group-vertical > .bg-btn {
+        position: relative;
+        float: left;
+    }
+    .btn-group > .bg-btn:hover,
+    .btn-group-vertical > .bg-btn:hover,
+    .btn-group > .bg-btn:focus,
+    .btn-group-vertical > .bg-btn:focus,
+    .btn-group > .bg-btn:active,
+    .btn-group-vertical > .bg-btn:active,
+    .btn-group > .bg-btn.active,
+    .btn-group-vertical > .bg-btn.active {
+        z-index: 2;
+    }
+    .btn-group > .bg-btn:focus,
+    .btn-group-vertical > .bg-btn:focus {
+        outline: 0;
+    }
+    .btn-group .bg-btn + .bg-btn,
+    .btn-group .bg-btn + .btn-group,
+    .btn-group .btn-group + .bg-btn,
+    .btn-group .btn-group + .btn-group {
+        margin-left: -1px;
+    }
+
+    .btn-group > .bg-btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+        border-radius: 0;
+    }
+    .btn-group > .bg-btn:first-child {
+        margin-left: 0;
+    }
+    .btn-group > .bg-btn:first-child:not(:last-child):not(.dropdown-toggle) {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .btn-group > .bg-btn:last-child:not(:first-child),
+    .btn-group > .dropdown-toggle:not(:first-child) {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+    .btn-group > .btn-group {
+        float: left;
+    }
+    .btn-group > .btn-group:not(:first-child):not(:last-child) > .bg-btn {
+        border-radius: 0;
+    }
+    .btn-group > .btn-group:first-child > .bg-btn:last-child,
+    .btn-group > .btn-group:first-child > .dropdown-toggle {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .btn-group > .btn-group:last-child > .bg-btn:first-child {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+
+
+
+
+    </style>
+    <script src="../libs/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="ctrl">
+
+    <radio-button-group ng-model="bv" onchange="btChange" conf="btgroupConf"></radio-button-group>
+
+    <div>{{comment}}</div>
+
+</div>
+
+<script>
+    var app = angular.module('bt',[]);
+
+    app.controller('ctrl',['$scope','$timeout',function($scope,$timeout){
+
+        $scope.btgroupConf = [
+            {value:1,text:"Query",active:false},
+            {value:2,text:"Userlist",active:false},
+            {value:3,text:"c",active:false}
+        ];
+
+        $scope.btChange = function(index,d){
+            $scope.comment="Button changed to index " + index;
+        };
+
+        $scope.bv = 3;
+
+        $timeout(function(){
+            $scope.bv=1;
+        },5000);
+
+    }]);
+
+    app.directive('radioButtonGroup',[function(){
+        return {
+            restrict: 'E',
+            scope: {
+                'conf': '=',
+                'onChange': '&onchange',
+                'btValue':'=ngModel'
+            },
+            templateUrl: './radioBtnGroup.html',
+            controller: ['$scope', function(scope){ }],
+            link: function(scope,element,attrs) {
+
+                var confData = scope.conf;
+
+
+                var onchangeHandler = scope.onChange() || function(){};
+
+                var setActBtn = function(btnsData,i){
+                    btnsData.forEach(function(d,j){
+                        d.active = (i===j);
+                    });
+                    onchangeHandler(i,btnsData,btnsData[i].value);
+                };
+
+
+                scope.switchTo = function(value,index,btnsData){
+                    scope.btValue = value;
+                };
+
+                scope.$watch('btValue',function(nv,ov){
+                    scope.conf.forEach(function(d,i){
+                        if(d.value == nv){
+                            setActBtn(confData,i);
+                        }
+                    });
+                })
+
+            }
+        }
+
+    }]);
+
+</script>
+
+</body>
+</html>
