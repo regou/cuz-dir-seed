@@ -2,12 +2,38 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title></title>
+    <title>Some Custom Directives</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="renderer" content="webkit"/>
+    <style>
+        body,*{margin: 0;padding: 0}
+        ul{
+            list-style: none;
+            width: 100vw;height: 98vh;
+        }
+        li{
+            text-align: center;
+            background-color: #00bc9c;
+            padding: 0 1em;
+        }
+        li a {
+            color: #FFF;font-size: 3em;font-weight: bold;
+        }
+        .wrap{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            align-content: stretch;
+        }
+    </style>
 </head>
 <body>
+<ul class="wrap">
+    <li><a href="./swicher/">Swicher</a></li>
+    <li><a href="./radio-button-group/">Radio Button Group</a></li>
+</ul>
 
-<a href="./swicher/index.html">swicher</a>
 </body>
 </html>
