@@ -175,7 +175,7 @@
 
 <div ng-controller="ctrl">
 
-    <radio-button-group ng-model="bv" onchange="btChange" conf="btgroupConf"></radio-button-group>
+    <radio-button-group uncheckable ng-model="bv" onchange="btChange" conf="btgroupConf"></radio-button-group>
 
     <div>{{comment}}</div>
 
@@ -216,6 +216,8 @@
             controller: ['$scope', function(scope){ }],
             link: function(scope,element,attrs) {
 
+                var uncheckable = attrs['uncheckable'] == '' || attrs['uncheckable'] == true;
+
                 var confData = scope.conf;
 
 
@@ -227,19 +229,33 @@
                     });
                     onchangeHandler(i,btnsData,btnsData[i].value);
                 };
+                var resetBtns = function(btnsData){
+                    btnsData.forEach(function(item){
+                        item.active = false;
+                    });
+                };
 
 
                 scope.switchTo = function(value,index,btnsData){
-                    scope.btValue = value;
+                    if(scope.btValue == value && uncheckable){//再点一下取消按下
+                        scope.btValue = null;
+                    }else{
+                        scope.btValue = value;
+                    }
+
                 };
 
                 scope.$watch('btValue',function(nv,ov){
-                    scope.conf.forEach(function(d,i){
-                        if(d.value == nv){
-                            setActBtn(confData,i);
-                        }
-                    });
-                })
+                    if(!nv){
+                        resetBtns(confData)
+                    }else{
+                        scope.conf.forEach(function(d,i){
+                            if(d.value == nv){
+                                setActBtn(confData,i);
+                            }
+                        });
+                    }
+                });
 
             }
         }
